@@ -1,0 +1,39 @@
+body, ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: white;
+}
+
+nav {
+    height: 100%;
+    width: fit-content;
+    background-color: #b6eaee;
+    border: 2px solid #007bff;
+}
+
+nav ul {
+    height: 100%;
+    background-color: #b6eaee;
+}
+
+nav li {
+    border: 2px solid #007bff;
+    background-color: #007bff;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+nav a {
+    padding: 8px 15px 8px 15px;
+    font-size: 25px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+nav a:hover {
+    color: #b6eaee;
+}
