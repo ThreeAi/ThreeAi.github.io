@@ -38,34 +38,36 @@
     transform: rotate(60deg);
 }
 
+.wing1::after {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 8px;
+    width: 15px; 
+    height: 32px; 
+    background-color: #6985F5;
+    border-radius: 50% / 50%; 
+    border: 1px solid #334DBC;
+    transform: rotate(60deg);
+}
+
 .wing2 {
     position: absolute;
-    left: 56px;
-    top: 12px;
+    left: 11px;
+    top: 11px;
     width: 15px; 
     height: 32px; 
     background-color: #6985F5;
     border-radius: 50% / 50%; 
     border: 1px solid #334DBC;
-    transform: rotate(120deg);
+    transform: rotate(60deg);
 }
 
-.wing3 {
+.wing2::after {
+    content: "";
     position: absolute;
-    left: 11px;
-    top: -6px;
-    width: 15px; 
-    height: 32px; 
-    background-color: #6985F5;
-    border-radius: 50% / 50%; 
-    border: 1px solid #334DBC;
-    transform: rotate(120deg);
-}
-
-.wing4 {
-    position: absolute;
-    left: 11px;
-    top: 12px;
+    left: -14px;
+    top: -9px;
     width: 15px; 
     height: 32px; 
     background-color: #6985F5;
@@ -85,7 +87,7 @@
     border: 1px solid #5C5724;
 }
 
-.eye1 {
+.eye {
     position: absolute;
     left: 36px;
     top: 48px;
@@ -95,15 +97,18 @@
     border-radius: 50%;
 }
 
-.eye2 {
+
+.eye::after {
+    content: "";
     position: absolute;
-    left: 43px;
-    top: 48px;
+    left: 7px;
+    /* top: 48px; */
     width: 6px;
     height: 6px; 
     background-color: #000000;
     border-radius: 50%;
 }
+
 
 .mashroom1 {
     position: absolute;
@@ -144,38 +149,33 @@
 }
 
 .triangle1 {
-    width: 0;
-    height: 0;
+    position: absolute;
+    border-left: 35px solid transparent; 
+    border-right: 35px solid transparent; 
+    border-bottom: 45px solid #00FF01; 
+}
+
+.triangle1::after {
+    position: absolute;
+    content: "";
+    left: 9px;
     border-left: 35px solid transparent; 
     border-right: 35px solid transparent; 
     border-bottom: 45px solid #00FF01; 
 }
 
 .triangle2 {
-    margin-left: 44px;
-    margin-top: -45px;
-    width: 0;
-    height: 0;
+    position: absolute;
+    left: 87px;
     border-left: 35px solid transparent; 
     border-right: 35px solid transparent; 
     border-bottom: 45px solid #00FF01; 
 }
 
-.triangle3 {
-    margin-left: 88px;
-    margin-top: -45px;
-    width: 0;
-    height: 0;
-    border-left: 35px solid transparent; 
-    border-right: 35px solid transparent; 
-    border-bottom: 45px solid #00FF01; 
-}
-
-.triangle4 {
-    margin-left: 131px;
-    margin-top: -45px;
-    width: 0;
-    height: 0;
+.triangle2::after {
+    position: absolute;
+    content: "";
+    left: 9px;
     border-left: 35px solid transparent; 
     border-right: 35px solid transparent; 
     border-bottom: 45px solid #00FF01; 
