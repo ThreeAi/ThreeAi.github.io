@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/lesson2.css">
+    <title>Lesson1</title>
+</head>
+
+<body>
+    <header>
+        <a href="../index.html">Главная</a></li>
+    </header>
+    <content>
+        <svg class="box"
+            width="200"
+            height="200"
+            viewBox="0 0 200 200"
+            style="border: 2px solid black;">
+            <text class="first_letter" x="4px" y="199px">A</text>
+            <text class="second_letter" x="66px" y="138px">A</text>
+            <text class="text" x="73px" y="190px">Берегите в себе человека.</text>
+            <path id="motionPath" d="M 2 200 L 49 59 L 90 59 L 110 0 L 152 0 
+            L 199 140 L 116 140 L 136 200 L 2 200" fill="transparent"/>
+            <circle class="animatedElement" cx="0" cy="0" r="3" fill="black" stroke="blue" stroke-width="1">
+                <animateMotion class="motionAnimation" dur="2s" repeatCount="indefinite">
+                    <mpath href="#motionPath" />
+                </animateMotion>
+            </circle>
+        </svg>
+    </content>
+</body>
+
+</html>
