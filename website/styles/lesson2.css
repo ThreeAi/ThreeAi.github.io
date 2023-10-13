@@ -16,6 +16,7 @@ content {
     font-weight: bold;
     stroke: #1faaa3;
     stroke-width: 3px;
+    transform: translate(3px, 67px);
 }
 
 .second_letter {
@@ -25,6 +26,7 @@ content {
     font-weight: bold;
     stroke: #1faaa3;
     stroke-width: 3px;
+    transform: translate(63px, 0);
 }
 
 .text {
@@ -40,13 +42,13 @@ content {
 
 .box:active .first_letter{
     text-shadow: 1px 1px 2px black;
-    transform: scale(0.5) translate(0, 200px);
+    transform: scale(0.5) translate(0, 270px);
     transition: transform 0.3s;
 }
 
 .box:active .second_letter{
     text-shadow: 1px 1px 3px black;
-    transform: scale(0.5) translate(200px, 0px);
+    transform: scale(0.5) translate(270px, 0px);
     transition: transform 0.3s ;
 }
 
