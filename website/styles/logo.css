@@ -1,0 +1,134 @@
+.logo_buran {
+    position: relative;
+    display: block;
+    height: 100px;
+    width: 100px;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+}
+
+.conteiner_triangle_1 {
+    top: 56px;
+    left: 57px;
+    position: absolute;
+    transform: rotate(-8deg) scale(1.5,1);
+}
+
+.conteiner_triangle_2 {
+    top: 64px;
+    left: 19px;
+    position: absolute;
+    transform: rotate(-98deg) scale(0.95,2.3);
+}
+
+.conteiner_triangle_3 {
+    top: 30px;
+    left: 66px;
+    position: absolute;
+    transform: rotate(36deg) scale(0.8,3);
+}
+
+.conteiner_triangle_3 {
+    top: 30px;
+    left: 66px;
+    position: absolute;
+    transform: rotate(36deg) scale(0.8,3);
+}
+
+.logo_line_1 {
+    position: absolute;
+    top: 26px;
+    left: 57px;
+    width: 40px; 
+    height: 10px; 
+    background-color: var(--color-gray-600); 
+    border-radius: 5px;
+    transform: rotate(131deg) scale(1.3,0.75);
+}
+
+.logo_line_2 {
+    position: absolute;
+    top: 36px;
+    left: 28px;
+    width: 64px; 
+    height: 10px; 
+    background-color: var(--color-gray-300); 
+    border-radius: 5px;
+    transform: rotate(133deg) ;
+}
+
+.logo_line_3 {
+    position: absolute;
+    top: 14px;
+    left: 75px;
+    width: 19px; 
+    height: 8px; 
+    background-color: var(--color-gray-300); 
+    border-radius: 4px;
+    transform: rotate(156deg) ;
+}
+
+.logo_line_4 {
+    position: absolute;
+    top: 56px;
+    left: 16px;
+    width: 34px; 
+    height: 8px; 
+    background-color: var(--color-gray-300); 
+    border-radius: 4px;
+    transform: rotate(205deg) ;
+}
+
+.logo_line_5 {
+    position: absolute;
+    top: 58px;
+    left: 13.5px;
+    width: 24px; 
+    height: 8px; 
+    background-color: var(--color-gray-300); 
+    border-radius: 4px;
+    transform: rotate(240deg) ;
+}
+
+.logo_line_6 {
+    position: absolute;
+    top: 18px;
+    left: 74px;
+    width: 7px; 
+    height: 1px; 
+    background-color: var(--color-gray-600); 
+    border-radius: 1px;
+    transform: rotate(131deg) ;
+}
+
+.triangle {
+	position: relative;
+	background-color: var(--color-gray-600);
+	text-align: left;
+}
+.triangle:before,
+.triangle:after {
+	content: '';
+	position: absolute;
+	background-color: inherit;
+}
+.triangle,
+.triangle:before,
+.triangle:after {
+	width:  1em;
+	height: 1em;
+	border-top-right-radius: 50%;
+}
+
+.triangle {
+	transform: rotate(-60deg) skewX(-30deg) scale(1,.866);
+}
+.triangle:before {
+	transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%);
+}
+.triangle:after {
+	transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
+}

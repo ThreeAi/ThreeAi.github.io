@@ -2,8 +2,6 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    min-height: 90vh;
-    height: fit-content;
 }
 
 .text_content {
@@ -14,7 +12,7 @@
 
 .pic_content {
     margin-left: 5%;
-    margin-top: 10%;
+    margin-top: 5%;
     width: 50%;
 }
 
