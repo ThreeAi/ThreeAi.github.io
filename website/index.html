@@ -4,21 +4,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/index.css">
     <title>Main</title>
 </head>
 <body>
-    <header>
-        <a class="nav__link" href="index.html">Главная</a>
-
-        <nav>
-            <a class="nav__link" href="pages/lesson1.html">Задание 1</a>
-            <a class="nav__link" href="pages/lesson2.html">Задание 2</a>
+    <header class="menu">
+        <nav class="nav">
+            <a class="tab" href="index.html">лого</a>
+            <a class="tab" href="pages/lesson1.html">Прародитель «Бурана»</a>
+            <a class="tab" href="pages/lesson2.html">Задание 2</a>
+            <a class="tab" href="pages/lesson2.html">Задание 2</a>
         </nav>
+        <div class="lessons">
+            <div class="lessons_conteiner">
+                <input type="checkbox" id="menu">
+                <label for="menu">Задания</label>
+                <ul>
+                    <li><a class="tab" href="pages/lesson1.html">Задание 1</a></li>
+                    <li><a class="tab" href="pages/lesson2.html">Задание 2</a></li>
+                </ul>
+            </div>
+          </div>
     </header>
+    <content class="content">
+        <div class="text_content">
+            <div class="buran">«Буран»: история русского шаттла</div>
+            <div class="description">
+                <span>В советской истории есть страницы, которые вызывают неподдельную гордость за наше прошлое. Многоразовый космический корабль «Буран» – именно такой случай. И хотя отечественный шаттл совершил лишь один-единственный полет, он навсегда изменил мировую историю. </span>
+            </div>
+            <div class="param">
+                <div class="length">
+                    <span class="length_title">36,4 м</span>
+                    <span class="length_description">длина</span>
+                </div>
+                <div class="weight">
+                    <span class="weight_title">105 т</span>
+                    <span class="weight_description">стартовая масса</span>
+                </div>
+                <div class="width">
+                    <span class="width_title">24 м</span>
+                    <span class="width_description">размах крыльев</span>
+                </div>
+            </div> 
+        </div>
+        <div class="pic_content">
+            <img class="img_buran" src="./images/buran_start.png">
+        </div>
+    </content>
     
-    <footer>
-        <p>&copy; 2023 Наша компания. Все права защищены.</p>
+    <footer class="footer">
+        <div class="top_footer">
+            <div class="logo">лого</div>
+            <div class="footer_contact">Contanct</div>
+        </div>
+        <div class="footer_line"></div>
+        <div class="botton_footer">
+            <div class="footer_copyrigth">&copy; 2023 Все права защищены.</div>
+        </div>
     </footer>
 </body>
 </html>  
