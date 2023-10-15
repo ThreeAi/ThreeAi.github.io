@@ -1,0 +1,37 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    margin-top: 50px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.header1 {
+    display: inline-block;
+    font-size: 50px;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-family: var(--caption-2);
+    color: var(--color-gray-600);
+}
+
+.text {
+    margin-top: 15px;
+    display: inline-block;
+    color: var(--color-dimgray-100);
+    font-family: var(--font-inter);
+    font-size: 1.3em;
+}
+
+.img_end {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 70%;
+    height: auto;
+    top: 0;
+    right: 0;
+    border-radius: 25px;
+    box-shadow: 10px 10px 10px #00000080;
+}
