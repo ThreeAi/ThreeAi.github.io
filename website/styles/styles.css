@@ -20,6 +20,18 @@
     gap: 4em;
 }
 
+@media (max-width: 950px) {
+    .menu {
+        height: fit-content;
+        gap: 0;
+    }
+    .nav {
+        flex-direction: column;
+        gap: 1em;
+        align-items: start;
+    }
+}
+
 .tab {
     line-height: 26.74px;
     text-transform: uppercase;
