@@ -35,3 +35,11 @@
     border-radius: 25px;
     box-shadow: 10px 10px 10px #00000080;
 }
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
