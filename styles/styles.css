@@ -96,6 +96,9 @@
 
 content {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-grow: 1;
     margin-bottom: 70px;
     min-height: 200px;
