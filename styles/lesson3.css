@@ -20,6 +20,7 @@ content {
 
 .hidden_block {
     animation: fadeIn 1s ease-out;
+    cursor: pointer;
 }
 
 @keyframes fadeIn {
@@ -37,7 +38,7 @@ content {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    max-width: 70%;
+    width: 70%;
     top: 50vh;
     height: 70vh;
 }

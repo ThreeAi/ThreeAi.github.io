@@ -91,19 +91,20 @@ function checkAnswer(answerIndex) {
     }
     answersContainer.children[0].style.pointerEvents='none';
     currentQuestion++;
-    if (currentQuestion < questions.length) {
-        nextQuestion(correct);
-    } else {
-        displayListQuestion(correct);
+    nextQuestion(correct);
+    if (currentQuestion >= questions.length) {
         showResults();
     }
 }
 
 function nextQuestion(correct) {
     displayListQuestion(correct);
-    setTimeout(animateSlideDown, 7000);
-    // setInterval(answersContainer.innerHTML = '', 20000);
-    // displayQuestion(currentQuestion);
+    if (correct) {
+        setTimeout(animateSlideDown, 3000);
+    }
+    else {
+        setTimeout(animateSlideDown, 1000);
+    }
 }
 
 function displayListQuestion(correct) {
@@ -128,15 +129,15 @@ function animateSlideDown()
     const children = Array.from(answersContainer.children[0].children);
     for (var i = children.length - 1; i >= 0; i--) {
         var child = children[i];
-        console.log(child);
         child.classList.add('animated_slideDown');
         child.style.animationDelay = `${children.length - 1 - i}s`;
     }
     answersContainer.children[0].classList.add('animated_slideDown');
     answersContainer.children[0].style.animationDelay = `${children.length - 1 - i}s`;
-    console.log(answersContainer.children[0]);
-    setTimeout(delite, (children.length + 1) * 1000);
-    setTimeout(displayQuestion, (children.length + 1) * 1000);
+    setTimeout(delite, (children.length + 1.5) * 1000);
+    if (currentQuestion < questions.length) {
+        setTimeout(displayQuestion, (children.length + 1.5) * 1000);
+    }
 }
 
 function delite()
@@ -144,9 +145,24 @@ function delite()
     answersContainer.innerHTML = '';
 }
 
-
 function showResults() {
     resultContainer.textContent = `Вы ответили правильно на ${correctAnswers} из ${questions.length} вопросов.`;
+    setAnswers();
+}
+
+function setAnswers() {
+    children = questionsContainer.children;
+    for (let i = 0; i < children.length; i++) {
+        const child = children[i];
+        child.addEventListener("click", function() {
+            delite();
+            const answer = questions[i].answers.find(answers => answers.correct === true);
+            const answerBlock = document.createElement("div");
+            answerBlock.textContent = `Ответ: ${answer.text}  \n ${questions[i].description}`;
+            answerBlock.classList.add("answer_block");
+            answersContainer.appendChild(answerBlock);
+        });
+    }
 }
 
 displayQuestion();
