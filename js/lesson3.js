@@ -5,7 +5,8 @@ const questions = [
             { text: "Полдеревни, зараз", correct: true },
             { text: "Пол деревни, за раз", correct: false },
             { text: "Пол-деревни, за раз", correct: false }
-        ]
+        ],
+        description: "Правильно! Раздельно существительное будет писаться в случае наличия дополнительного слова между существительным и частицей. Правильный ответ: полдеревни пишется слитно. Зараз (ударение на второй слог) — это обстоятельственное наречие, пишется слитно. Означает быстро, одним махом."
     },
     {
         question: "Вопрос: А эти слова как пишутся?",
@@ -13,7 +14,8 @@ const questions = [
             { text: "Капучино и эспрессо", correct: true },
             { text: "Капуччино и эспрессо", correct: false },
             { text: "Каппуччино и экспресо", correct: false }
-        ]
+        ],
+        description: "Конечно! По орфографическим нормам русского языка единственно верным написанием будут «капучино» и «эспрессо»."
     },
     {
         question: "Вопрос: Как нужно писать?",
@@ -21,7 +23,8 @@ const questions = [
             { text: "Чересчур", correct: true },
             { text: "Черезчур", correct: false },
             { text: "Черес-чур", correct: false }
-        ]
+        ],
+        description: "Да! Это слово появилось от соединения предлога «через» и древнего слова «чур», которое означает «граница», «край». Но слово претерпело изменения, так что правильное написание учим наизусть — «чересчур»."
     },
     {
         question: "Вопрос: Где допущена ошибка?",
@@ -29,7 +32,8 @@ const questions = [
             { text: "Эпелепсия", correct: true },
             { text: "Аккордеон", correct: false },
             { text: "Белиберда", correct: false }
-        ]
+        ],
+        description: "Верно! Это слово пишется так: «эпИлепсия»."
     }
 ];
 
@@ -76,6 +80,10 @@ function checkAnswer(answerIndex) {
     if (answer.correct) {
         correctAnswers++;
         answersContainer.children[0].children[answerIndex].classList.add("correct");
+        const descriptionBlock = document.createElement("div");
+        descriptionBlock.textContent = question.description;
+        descriptionBlock.classList.add("answer_block");
+        answersContainer.children[0].appendChild(descriptionBlock);
         correct = true;
     } else {
         answersContainer.children[0].children[answerIndex].classList.add("incorrect");
@@ -92,15 +100,10 @@ function checkAnswer(answerIndex) {
 }
 
 function nextQuestion(correct) {
-    const nextButton = document.createElement("div");
-    nextButton.classList.add("answer_block");
-    nextButton.textContent = `Следующий вопрос`;
-    nextButton.addEventListener("click", () => {
-        answersContainer.innerHTML = '';
-        displayListQuestion(correct);
-        displayQuestion(currentQuestion);
-        });
-    answersContainer.appendChild(nextButton);
+    displayListQuestion(correct);
+    setTimeout(animateSlideDown, 7000);
+    // setInterval(answersContainer.innerHTML = '', 20000);
+    // displayQuestion(currentQuestion);
 }
 
 function displayListQuestion(correct) {
@@ -119,6 +122,28 @@ function displayListQuestion(correct) {
     shortQuestion.appendChild(marker);
     questionsContainer.appendChild(shortQuestion);
 }
+
+function animateSlideDown()
+{
+    const children = Array.from(answersContainer.children[0].children);
+    for (var i = children.length - 1; i >= 0; i--) {
+        var child = children[i];
+        console.log(child);
+        child.classList.add('animated_slideDown');
+        child.style.animationDelay = `${children.length - 1 - i}s`;
+    }
+    answersContainer.children[0].classList.add('animated_slideDown');
+    answersContainer.children[0].style.animationDelay = `${children.length - 1 - i}s`;
+    console.log(answersContainer.children[0]);
+    setTimeout(delite, (children.length + 1) * 1000);
+    setTimeout(displayQuestion, (children.length + 1) * 1000);
+}
+
+function delite()
+{
+    answersContainer.innerHTML = '';
+}
+
 
 function showResults() {
     resultContainer.textContent = `Вы ответили правильно на ${correctAnswers} из ${questions.length} вопросов.`;

@@ -38,6 +38,8 @@ content {
     flex-direction: column;
     gap: 1em;
     max-width: 70%;
+    top: 50vh;
+    height: 70vh;
 }
 
 img {
@@ -72,4 +74,19 @@ img {
     border: 2px solid red;
     padding: 10px;
     border-radius: 16.17px;
+}
+
+.animated_slideDown {
+    animation: slideDown 2s ease forwards;
+    z-index: -2;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(40vh);
+        opacity: 0;
+    }
 }
