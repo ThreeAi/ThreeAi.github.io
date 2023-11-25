@@ -12,7 +12,7 @@ function processString() {
     }
 
     const wordsArray = inputString.split('-').map(word => word.trim());
-    const words = wordsArray.filter(word => !/^\d+$/.test(word)).sort();
+    const words = wordsArray.filter(word => !/^\d+$/.test(word) && word !== "").sort();
     const numbers = wordsArray.filter(word => /^\d+$/.test(word)).sort();
 
     listItems.innerHTML = '';
@@ -32,6 +32,7 @@ function processString() {
     listItems.querySelectorAll('.block').forEach((dragItem) => {
         dragItem.addEventListener("dragstart", handlerDragstart);
         dragItem.addEventListener("dragend", handlerDragend);
+        dragItem.addEventListener("dragover", handlerDragdrop);
         dragItem.addEventListener("dragenter", () => {
             droppedItem = dragItem;
         })
@@ -54,12 +55,10 @@ let draggedItem = null;
 let droppedItem = null;
 
 listItems.addEventListener("dragenter", handlerDragenter);
-listItems.addEventListener("dragleave", handlerDragleave);
 listItems.addEventListener("dragover", handlerDragover);
 listItems.addEventListener("drop", handlerDragdrop);
 
 upperBlock.addEventListener("dragenter", handlerDragenter);
-upperBlock.addEventListener("dragleave", handlerDragleave);
 upperBlock.addEventListener("dragover", handlerDragover);
 upperBlock.addEventListener("drop", handlerDragdrop);
 
@@ -75,10 +74,6 @@ function handlerDragend(event) {
 
 function handlerDragenter(event) {
     event.preventDefault();
-}
-
-function handlerDragleave(event) {
-
 }
 
 function handlerDragover(event) {
