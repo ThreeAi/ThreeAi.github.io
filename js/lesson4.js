@@ -32,7 +32,6 @@ function processString() {
     listItems.querySelectorAll('.block').forEach((dragItem) => {
         dragItem.addEventListener("dragstart", handlerDragstart);
         dragItem.addEventListener("dragend", handlerDragend);
-        dragItem.addEventListener("dragover", handlerDragdrop);
         dragItem.addEventListener("dragenter", () => {
             droppedItem = dragItem;
         })
