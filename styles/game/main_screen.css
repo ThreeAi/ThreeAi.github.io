@@ -69,3 +69,30 @@ form {
     align-items: center;
     display: flex;
 }
+
+.game_content {
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.description {
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+.submit_button {
+    font-family: inherit;
+    font-size: large;
+    border: 0;
+    background: green;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    padding: 0.75rem;
+    cursor: pointer;
+}
