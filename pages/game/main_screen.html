@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="../../styles/global.css">
     <link rel="stylesheet" href="../../styles/styles.css">
     <link rel="stylesheet" href="../../styles/game/main_screen.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    </link>
     <title>Game</title>
 </head>
 
@@ -35,16 +36,18 @@
                     <div class="logo_line_6"></div>
                 </div>
             </a>
-            <div class="name_of_game">Игра следы</div>
+            <div class="name_of_game">Игра "следы"</div>
         </nav>
     </header>
     <content>
         <div class="game_header">
             <div class="row">
-                <div id="user_name" class="text_button">
-                    <i class="fas fa-fw fa-user"></i>
-                    user name
-                </div>
+                <a href="login_screen.html">
+                    <div id="user_name" class="text_button">
+                        <i class="fas fa-fw fa-user"></i>
+                        user name
+                    </div>
+                </a>
                 <div class="spacer"></div>
                 <div class="text_button">
                     <i class="fas fa-fw fa-gear"></i>
@@ -96,6 +99,7 @@
         </div>
     </content>
     <script src="../../js/game/consts.js"></script>
+    <script src="../../js/game/print.js"></script>
     <script src="../../js/game/game_settings.js"></script>
     <script src="../../js/game/game.js"></script>
     <script src="../../js/game/init_game.js"></script>
