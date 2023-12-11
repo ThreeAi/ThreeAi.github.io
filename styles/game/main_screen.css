@@ -104,6 +104,7 @@ form {
     font-family: inherit;
     font-size: large;
     border: 0;
+    color: var(--color-gray-600);
     background: var(--color-gray-300);
     border-radius: 0.5rem;
     font-weight: 600;

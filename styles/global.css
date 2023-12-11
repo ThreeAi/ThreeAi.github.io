@@ -6,16 +6,18 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: var(--others-white);
+    color: var(--color-gray-600);
 }
 
 @font-face {
-	font-family: Inter; 
-	src: url(../fonts/Inter-VariableFont_slnt\,wght.ttf)
+    font-family: Inter;
+    src: url(../fonts/Inter-VariableFont_slnt\,wght.ttf)
 }
 
 @font-face {
-	font-family: Georgi; 
-	src: url(../fonts/Geologica-VariableFont_CRSV,SHRP,slnt,wght.ttf)
+    font-family: Georgi;
+    src: url(../fonts/Geologica-VariableFont_CRSV,SHRP,slnt,wght.ttf)
 }
 
 :root {
@@ -29,4 +31,10 @@ body {
     --color-gray-300: #818181;
     --color-gray-500: #444444;
     --color-yellow: #e2b714;
-}    
+}
+
+.darkTheme {
+    --others-white: #333;
+    --color-gray-600: #f4f4f4;
+    --color-gray-300: #141416;
+}
