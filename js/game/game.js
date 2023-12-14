@@ -20,7 +20,7 @@ class Game {
     }
 
     running() {
-        if (!this.isEnd) {
+        if (!this.isEnd){
             this.showPrints();
         }
         else {
@@ -31,8 +31,8 @@ class Game {
     end() {
         this.standartPrintBlock.innerHTML = "";
         this.listOfPrintsBlock.innerHTML = "";
-        descriptoin.innerHTML =
-            `Игра окочена, вы набрали ${this.score} очков
+        descriptoin.innerHTML = 
+        `Игра окочена, вы набрали ${this.score} очков
         <a href="history_screen.html">
             <div class="history_button">
                     История игр
@@ -72,16 +72,10 @@ class Game {
         const arrayPrints = [];
         let onePrint = print.createRightPrint();
         onePrint.addEventListener('click', () => this.handlerRightAnswer());
-        onePrint.addEventListener("dragenter", handlerDragenter);
-        onePrint.addEventListener("dragover", handlerDragover);
-        onePrint.addEventListener("drop", () => this.handlerRightAnswer());
         arrayPrints.push(onePrint);
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 3; i ++) {
             onePrint = print.createWrongPrint();
             onePrint.addEventListener('click', () => this.handlerWrongAnswer());
-            onePrint.addEventListener("dragenter", handlerDragenter);
-            onePrint.addEventListener("dragover", handlerDragover);
-            onePrint.addEventListener("drop", () => this.handlerWrongAnswer());
             arrayPrints.push(onePrint);
         }
 
@@ -187,7 +181,7 @@ class GameOnDurability extends Game {
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
-    max = Math.floor(max);
+    max = Math.floor(max); 
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -196,12 +190,4 @@ function shuffleArray(array) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
-}
-
-function handlerDragenter(event) {
-    event.preventDefault();
-}
-
-function handlerDragover(event) {
-    event.preventDefault();
 }
