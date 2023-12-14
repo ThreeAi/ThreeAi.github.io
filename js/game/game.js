@@ -128,6 +128,10 @@ class GameOnTime extends Game {
         const timeLeft = Math.floor((this.timeStart - Date.now()) / 1000);
         if (timeLeft < 0) {
             this.isEnd = true;
+            var list = this.listOfPrintsBlock.querySelectorAll('div');
+            list.forEach(function(element) {
+                element.classList.add('shake');
+            })
         }
         else {
             this.timeBlock.textContent = "Время: " + timeLeft;
