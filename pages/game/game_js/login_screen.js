@@ -7,7 +7,7 @@ document.getElementById('usernameForm').addEventListener('submit', function(even
     if (username !== '') {
       sessionStorage.setItem('username', username);
   
-      window.location.href = '../../pages/game/main_screen.html';
+      window.location.href = '../game/main_screen.html';
     } else {
       alert('Введите ваше имя!');
     }
