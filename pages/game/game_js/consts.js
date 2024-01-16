@@ -33,9 +33,9 @@ const PRINTS = [
 ];
 
 const WHEELS = [
-    "../../images/game/1_wheels.png",
-    "../../images/game/2_wheels.png",
-    "../../images/game/3_wheels.png",
-    "../../images/game/4_wheels.png",
-    "../../images/game/5_wheels.png",
+    "./images/game/1_wheels.png",
+    "./images/game/2_wheels.png",
+    "./images/game/3_wheels.png",
+    "./images/game/4_wheels.png",
+    "./images/game/5_wheels.png",
 ]
