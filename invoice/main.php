@@ -5,71 +5,54 @@
 </head>
 <body>
 <h2>Заполните информацию по заказу:</h2>
-<form action="index.php" method="post" enctype="multipart/form-data">
+<form action="main.php" method="post" enctype="multipart/form-data">
+
+    <?php include "handle_form.php" ?>
+
     <label for="surname">Фамилия</label>
-    <input type="text" id="surname" name="surname"><br><br>
+    <input type="text" id="surname" name="surname" value="<?= $text_fields["surname"] ?>"><br><br>
 
     <label for="product">Город доставки</label>
-    <select id="product" name="product">
+    <select id="product" name="town">
         <?php
-            $towns = array( "Москва", "Санкт-Петербург", "Пермь");
-            foreach ($towns as $town){
-                echo "<option value={$town}>{$town}</option>";
-            }
+        foreach ($towns as $key => $value) {
+            echo "<option name=town value={$key} $value>{$key}</option>";
+        }
         ?>
     </select><br><br>
 
     <label for="date">Дата доставка</label>
-    <input type="text" id="date" name="date"><br><br>
+    <input type="text" id="date" name="date" value="<?= $text_fields["date"] ?>"><br><br>
 
     <label for="address">Адрес</label>
-    <input type="text" id="address" name="address"><br><br>
+    <input type="text" id="address" name="address" value="<?= $text_fields["address"] ?>"><br><br>
 
     <div>
-    <?php
-        $colors = array(
-                "nut" => ["Орех", ""],
-                "oak" => ["Дуб мореный", ""],
-                "rosewood" =>["Палисандр", ""],
-                "dark" => ["Эбеновое дерево", ""],
-                "maple" => ["Клен", ""],
-                "larch" => ["Лиственница", ""]
-        );
-        echo "<label><b>Выберите цвет мебели<b></b></label><br>";
-        foreach($colors as $key => $value) {
-            echo "<input type=radio id=$key name=color value=\"$value[0]\" $value[1]>
-                  <label for=$key>$value[0]</label><br>";
-        }
-    ?>
 
-
-    <?php
-    $furnitures = array(
-        [0, "Банкетка", "", 0],
-        [1, "Кровать", "", 0],
-        [2, "Комод", "", 0],
-        [3, "Шкаф", "", 0],
-        [4, "Стул", "", 0],
-        [5, "Лиственница", "", 0]
-    );
-    ?>
-    <table>
-        <tr>
-            <th>Название мебели</th>
-            <th>Количество</th>
-        </tr>
-        <?php foreach($furnitures as $furniture): ?>
-            <tr>
-                <td>
-                    <input type="checkbox" id="<?= $furniture[1] ?>" name="furniture[<?= $furniture[0]?>]" value="<?= $furniture[0]?>" <?= $furniture[2]?>>
-                    <label for="<?= $furniture[1] ?>"><?= $furniture[1] ?></label>
-                </td>
-                <td>
-                    <input type="number" name="quantity_<?= $furniture[1] ?>" min="0" value=<?= $furniture[3]?>>
-                </td>
-            </tr>
+        <label><b>Выберите цвет мебели<b></b></label><br>
+        <?php foreach ($colors as $color): ?>
+            <input type=radio id="<?= $color[0] ?>" name=color value="<?= $color[0] ?>" <?= $color[1] ?>>
+            <label for="<?= $color[0] ?>"><?= $color[0] ?></label><br>
         <?php endforeach; ?>
-    </table>
+
+        <table>
+            <tr>
+                <th>Название мебели</th>
+                <th>Количество</th>
+            </tr>
+            <?php foreach ($furnitures as $furniture): ?>
+                <tr>
+                    <td>
+                        <input type="checkbox" id="<?= $furniture[1] ?>" name="furniture[<?= $furniture[0] ?>]"
+                               value="<?= $furniture[1] ?>" <?= $furniture[2] ?>>
+                        <label for="<?= $furniture[1] ?>"><?= $furniture[1] ?></label>
+                    </td>
+                    <td>
+                        <input type="number" name="quantity[<?= $furniture[0] ?>]" min="0" value=<?= $furniture[3] ?>>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
     </div>
 
     <label for="file">Прикрепите файл:</label><br>
@@ -80,12 +63,3 @@
 </body>
 </html>
 
-<?php
-
-if(isset($_REQUEST["sub"])){
-    for($i = 0; $i < count($furnitures); $i++){
-        if (isset($_REQUEST['furniture'][$i]) ) {
-            $furnitures[$i][2] = "checked";
-        }
-    }
-}
