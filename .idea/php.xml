@@ -10,11 +10,47 @@
     <option name="highlightLevel" value="WARNING" />
     <option name="transferred" value="true" />
   </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/invoice/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/invoice/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/invoice/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/invoice/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/invoice/vendor/voku/anti-xss" />
+      <path value="$PROJECT_DIR$/invoice/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/invoice/vendor/voku/portable-utf8" />
+      <path value="$PROJECT_DIR$/invoice/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/invoice/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/invoice/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/invoice/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/invoice/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/invoice/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/invoice/vendor/composer" />
+      <path value="$PROJECT_DIR$/invoice/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/invoice/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/invoice/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/invoice/vendor/phpoffice/phpword" />
+      <path value="$PROJECT_DIR$/invoice/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/invoice/vendor/phpoffice/math" />
+      <path value="$PROJECT_DIR$/invoice/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/invoice/vendor/mpdf/mpdf" />
+      <path value="$PROJECT_DIR$/invoice/vendor/mpdf/psr-http-message-shim" />
+      <path value="$PROJECT_DIR$/invoice/vendor/mpdf/psr-log-aware-trait" />
+      <path value="$PROJECT_DIR$/invoice/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/invoice/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/invoice/vendor/setasign/fpdi" />
+    </include_path>
+  </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/invoice/vendor/autoload.php" />
+    </phpunit_settings>
   </component>
   <component name="PsalmOptionsConfiguration">
     <option name="transferred" value="true" />

@@ -4,9 +4,21 @@ require 'vendor/autoload.php';
 use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Settings;
+use Mpdf\Mpdf;
 
-Settings::setPdfRendererPath('vendor/tecnickcom/tcpdf/');
-Settings::setPdfRendererName('TCPDF');
+
+Settings::setPdfRendererPath('vendor/mpdf/mpdf');
+Settings::setPdfRendererName(Settings::PDF_RENDERER_MPDF);
+
+$total_color = "";
+$total_price = 0;
+$summary_price = 0;
+$total_count = 0;
+$pdfFile = "";
+$file = array(
+    "is_fail" => false,
+    "message" => ""
+);
 
 $text_fields = array(
     "surname" => "",
@@ -21,24 +33,66 @@ $towns = array(
 );
 
 $colors = array(
-    ["Орех", ""],
-    ["Дуб мореный", ""],
-    ["Палисандр", ""],
-    ["Эбеновое дерево", ""],
-    ["Клен", ""],
-    ["Лиственница", ""]
+    "Орех" => array(
+        "checked" => "checked",
+        "extra_price" => 1.1,
+        "img_name" => 'орех.png'),
+    "Дуб мореный" => array(
+        "checked" => "",
+        "extra_price" => 1.2,
+        "img_name" => 'дуб.png'),
+    "Палисандр" => array(
+        "checked" => "",
+        "extra_price" => 1.3,
+        "img_name" => 'палисандр.png'),
+    "Эбеновое дерево" => array(
+        "checked" => "",
+        "extra_price" => 1.4,
+        "img_name" => 'эбен.png'),
+    "Клен" => array(
+        "checked" => "",
+        "extra_price" => 1.5,
+        "img_name" => 'клен.png'),
+    "Лиственница" => array(
+        "checked" => "",
+        "extra_price" => 1.6,
+        "img_name" => 'лиственница.png')
 );
 
 $furnitures = array(
-    [0, "Банкетка", "", ""],
-    [1, "Кровать", "", ""],
-    [2, "Комод", "", ""],
-    [3, "Шкаф", "", ""],
-    [4, "Стул", "", ""],
-    [5, "Стол", "", ""]
+    "Банкетка" => array(
+        "checked" => "",
+        "quantity" => "",
+        "item_price" => 0,
+        "price" => 0),
+    "Кровать" => array(
+        "checked" => "",
+        "quantity" => "",
+        "item_price" => 0,
+        "price" => 0),
+    "Комод" => array(
+        "checked" => "",
+        "quantity" => "",
+        "item_price" => 0,
+        "price" => 0),
+    "Шкаф" => array(
+        "checked" => "",
+        "quantity" => "",
+        "item_price" => 0,
+        "price" => 0),
+    "Стул" => array(
+        "checked" => "",
+        "quantity" => "",
+        "item_price" => 0,
+        "price" => 0),
+    "Стол" => array(
+        "checked" => "",
+        "quantity" => "",
+        "item_price" => 0,
+        "price" => 0),
 );
 
-if (isset($_REQUEST["sub"])) {
+if (isset($_POST['sub'])) {
 
     foreach ($text_fields as $key => $value)
         if (isset($_REQUEST[$key]) and $_REQUEST[$key] != "") {
@@ -59,26 +113,24 @@ if (isset($_REQUEST["sub"])) {
     if (isset($_REQUEST["color"])) {
         $color = $_REQUEST["color"];
     }
-    for ($i = 0; $i < count($colors); $i++) {
-        if ($color == $colors[$i][0]) {
-            $colors[$i][1] = "checked";
+    foreach ($colors as $key => $value) {
+        if ($color == $key) {
+            $colors[$key]["checked"] = "checked";
         } else {
-            $colors[$i][1] = "";
+            $colors[$key]["checked"] = "";
         }
     }
 
-    for ($i = 0; $i < count($furnitures); $i++) {
-        if (isset($_REQUEST['furniture'][$i]) and $_REQUEST['furniture'][$i] != "") {
-            $furnitures[$i][2] = "checked";
-            $furnitures[$i][3] = $_REQUEST["quantity"][$i];
+    foreach ($furnitures as $key => $value) {
+        if (isset($_REQUEST['furniture_' . $key]) and $_REQUEST['furniture_' . $key] != "") {
+            $furnitures[$key]["checked"] = "checked";
+            $furnitures[$key]["quantity"] = $_REQUEST["quantity_" . $key];
         } else {
-            $furnitures[$i][2] = "";
-            $furnitures[$i][3] = "";
+            $furnitures[$key]["checked"] = "";
+            $furnitures[$key]["quantity"] = "";
         }
     }
 
-}
-if (isset($_POST['sub'])) {
     if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
         $file_tmp = $_FILES['file']['tmp_name'];
         $file_type = $_FILES['file']['type'];
@@ -86,7 +138,6 @@ if (isset($_POST['sub'])) {
         if ($file_type === 'text/plain') {
             $lines = file($file_tmp, FILE_IGNORE_NEW_LINES);
 
-            $prices = [];
             $firstLineSkipped = false;
             foreach ($lines as $line) {
                 if (!$firstLineSkipped) {
@@ -94,39 +145,60 @@ if (isset($_POST['sub'])) {
                     continue;
                 }
                 $parts = explode(" ", $line);
-                $prices[$parts[0]] = intval($parts[1]);
-                echo $parts[0] . $prices[$parts[0]] . "<br>";
+                $furnitures[$parts[0]]["item_price"] = intval($parts[1]);
+                $furnitures[$parts[0]]["price"] = intval($furnitures[$parts[0]]["quantity"]) * intval($parts[1]);
             }
 
         } else {
-            echo "Допустим только файлы текстового формата (.txt) <br>";
+            $file["is_fail"] = true;
+            $file["message"] = "Допустим только файлы текстового формата (.txt)";
         }
     } else {
-        echo "Ошибка загрузки файла <br>";
+        $file["is_fail"] = true;
+        $file["message"] = "Ошибка загрузки файла";
     }
+    if (!$file["is_fail"]) {
+        foreach ($colors as $color => $details) {
+            if ($details['checked'] === "checked") {
+                $total_color = $color;
+            }
+        }
 
+        $templateFile = 'temp/template.docx';
+        $templateProcessor = new TemplateProcessor($templateFile);
 
-// Путь к вашему шаблону Word
-    $templateFile = 'path_to_your_template.docx';
+        $number = mt_rand(1000, 9999);
+        $replacements = array();
+        foreach ($furnitures as $furniture => $details) {
+            if ($details['checked'] === "checked") {
+                $replacements[] = array('furniture' => $furniture, 'quantity' => $details['quantity'], 'price' => $details['price']);
+                $total_count += $details['quantity'];
+                $summary_price += $details['price'];
+            }
+        }
+        $templateProcessor->setValue('number_invoice', $number);
+        $templateProcessor->setValue('address', $text_fields['address']);
+        $templateProcessor->setValue('date', $text_fields['date']);
+        $templateProcessor->cloneBlock('block_name', 0, true, false, $replacements);
+        $templateProcessor->setValue('summary_price', $summary_price);
+        $templateProcessor->setValue('color', $total_color);
+        $templateProcessor->setValue('extra_price', $colors[$total_color]['extra_price']);
+        $total_price = $summary_price * $colors[$total_color]['extra_price'];
+        $templateProcessor->setValue('total_price', $total_price);
+        $file["message"] = "Итоговая цена: " . $total_price;
+        $templateProcessor->setValue('total_count', $total_count);
+        $templateProcessor->setImageValue('color_img', array('path' => 'img/' . $colors[$total_color]['img_name'], 'width' => 20, 'height' => 20, 'resize' => true));
 
-// Создаем объект TemplateProcessor и загружаем шаблон
-    $templateProcessor = new TemplateProcessor($templateFile);
+        $processedFile = 'temp/processed_file.docx';
+        $templateProcessor->saveAs($processedFile);
 
-    $templateProcessor->setValue('placeholder1', 'Replacement1');
-    $templateProcessor->setValue('placeholder2', 'Replacement2');
+        $phpWord = IOFactory::load($processedFile, 'Word2007');
 
-    $processedFile = 'path_to_processed_file.docx';
-    $templateProcessor->saveAs($processedFile);
-
-// Создаем объект PhpWord из нового документа
-    $phpWord = IOFactory::load($processedFile);
-
-// Создаем объект Writer для экспорта в PDF
-    $writer = IOFactory::createWriter($phpWord, 'PDF');
-
-// Сохраняем PDF-файл
-    $pdfFile = 'path_to_output_pdf.pdf';
-    $writer->save($pdfFile);
-
-    echo 'PDF файл успешно создан';
+        $pdfFile = "files/Документ_на_выдачу_$number.pdf";
+        $xmlWriter = IOFactory::createWriter($phpWord, 'PDF');
+        $html = $xmlWriter->getContent();
+        $mpdf = new Mpdf();
+        $mpdf->WriteHTML($html);
+        $mpdf->Output($pdfFile, 'F');
+    }
 }
